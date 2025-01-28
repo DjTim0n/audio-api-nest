@@ -23,13 +23,10 @@ import { ProfileModule } from './controllers/profile/profile.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => (
-        console.log(configService.get<string>('MONGO_URI')),
-        {
-          uri: configService.get<string>('MONGO_URI'),
-          dbName: 'AudioDB',
-        }
-      ),
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGO_URI'),
+        dbName: 'AudioDB',
+      }),
       inject: [ConfigService],
     }),
     ProfileModule,
