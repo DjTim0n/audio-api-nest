@@ -8,7 +8,7 @@ services:
     ports:
       - "8468:3000"
     volumes:
-      - ./audio:/app/audio
+      - ./audio:/usr/src/app/audio
     environment:
       - NODE_ENV=production
       - PORT=3000
