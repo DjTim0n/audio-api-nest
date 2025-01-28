@@ -1,10 +1,7 @@
-import { Body, Controller, Post, Query, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UserLoginDTO, UserRegisterDTO } from 'src/DTO/user.dto';
-import { ApiBody, ApiQuery } from '@nestjs/swagger';
-import { User } from 'src/schemas/user.schema';
-import { ResponseInterceptor } from 'src/interceptors/response.interceptor';
-import { SetMessage } from 'src/decorators/message.decorator';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {

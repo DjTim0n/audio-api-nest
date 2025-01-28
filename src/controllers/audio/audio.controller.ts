@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  Param,
   Post,
   Query,
   Res,
@@ -21,8 +20,6 @@ import { AudioUpload } from 'src/interfaces/audio.interface';
 import { AudioCreateDto } from 'src/DTO/audio.dto';
 import { AuthUser } from 'src/decorators/user.decorator';
 import { IAuthUser } from 'src/DTO/user.dto';
-import { SetMessage } from 'src/decorators/message.decorator';
-import { ResponseInterceptor } from 'src/interceptors/response.interceptor';
 
 @Auth()
 @Controller('audio')

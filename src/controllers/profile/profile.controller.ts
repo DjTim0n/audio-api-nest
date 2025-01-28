@@ -3,8 +3,6 @@ import { ProfileService } from './profile.service';
 import { AuthUser } from 'src/decorators/user.decorator';
 import { IAuthUser } from 'src/DTO/user.dto';
 import { Auth } from 'src/guard/auth.guard';
-import { ResponseInterceptor } from 'src/interceptors/response.interceptor';
-import { SetMessage } from 'src/decorators/message.decorator';
 
 @Auth()
 @Controller('profile')
