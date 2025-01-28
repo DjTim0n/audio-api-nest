@@ -21,11 +21,11 @@ import { AudioCreateDto } from 'src/DTO/audio.dto';
 import { AuthUser } from 'src/decorators/user.decorator';
 import { IAuthUser } from 'src/DTO/user.dto';
 
-@Auth()
 @Controller('audio')
 export class AudioController {
   constructor(private readonly audioService: AudioService) {}
 
+  @Auth()
   @Get('get_tracks')
   async getListTracks() {
     return this.audioService.getListTracks();
@@ -81,6 +81,7 @@ export class AudioController {
     }
   }
 
+  @Auth()
   @Post('uploadAudio')
   @ApiBody({
     schema: {
