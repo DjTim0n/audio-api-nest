@@ -38,7 +38,7 @@ export class AudioService {
     }
 
     const fileExtention = body.file.originalname.split('.').pop();
-    const fileName = body.artist + body.title + fileExtention;
+    const fileName = body.artist + body.title + '.' + fileExtention;
     const filePath = path.join(process.cwd(), 'audio', fileName);
     fs.writeFileSync(filePath, body.file.buffer);
 
