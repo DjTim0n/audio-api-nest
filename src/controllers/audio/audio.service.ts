@@ -37,7 +37,9 @@ export class AudioService {
       throw new BadRequestException('User not found');
     }
 
-    const filePath = path.join(process.cwd(), 'audio', body.file.originalname);
+    const fileExtention = body.file.originalname.split('.').pop();
+    const fileName = body.artist + body.title + fileExtention;
+    const filePath = path.join(process.cwd(), 'audio', fileName);
     fs.writeFileSync(filePath, body.file.buffer);
 
     const newAudio = await this.audioModel.create({
@@ -46,7 +48,7 @@ export class AudioService {
       album: body.album || '',
       genre: body.genre || '',
       year: body.year || '',
-      url: `audio/get_audio?name=${body.file.originalname}`,
+      url: `audio/get_audio?name=${fileName}`,
       userId: existUser._id,
     });
 
