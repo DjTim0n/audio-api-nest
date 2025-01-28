@@ -8,6 +8,9 @@ import { ProfileModule } from './controllers/profile/profile.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     AudioModule,
     AuthModule,
     JwtModule.registerAsync({
@@ -18,16 +21,14 @@ import { ProfileModule } from './controllers/profile/profile.module';
       }),
       inject: [ConfigService],
     }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        uri:
-          configService.get<string>('MONGO_URI') ||
-          'mongodb://localhost:27017/AudioDB',
-      }),
+      useFactory: async (configService: ConfigService) => (
+        console.log(configService.get<string>('MONGO_URI')),
+        {
+          uri: configService.get<string>('MONGO_URI'),
+        }
+      ),
       inject: [ConfigService],
     }),
     ProfileModule,
