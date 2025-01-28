@@ -1,0 +1,16 @@
+services:
+  audio-api:
+    container_name: audio-api
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8468:3000"
+    volumes:
+      - ./audio:/app/audio
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGO_URI=mongodb://mongo:27017/audio
+      - JWT_SECRET=secret
