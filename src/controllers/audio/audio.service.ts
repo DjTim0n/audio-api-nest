@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import * as fs from 'fs';
 import { Model } from 'mongoose';
 import * as path from 'path';
-import { AudioCreateDto } from 'src/DTO/audio.dto';
 import { IAuthUser } from 'src/DTO/user.dto';
 import { AudioUpload } from 'src/interfaces/audio.interface';
 import { Audio } from 'src/schemas/audio.schema';

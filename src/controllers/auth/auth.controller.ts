@@ -17,9 +17,36 @@ export class AuthController {
     }
   }
 
+  @Post('verify')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { email: { type: 'string' }, code: { type: 'number' } },
+    },
+  })
+  async verify(@Body() body: { email: string; code: number }) {
+    return this.authService.verifyEmailService(body.email, body.code);
+  }
+
+  @Post('resend_code')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { email: { type: 'string' } },
+    },
+  })
+  async resendCode(@Body() body: { email: string }) {
+    return this.authService.resendVerificationCodeService(body.email);
+  }
+
   @Post('login')
   async login(@Body() user: UserLoginDTO) {
-    return this.authService.loginService(user);
+    try {
+      return this.authService.loginService(user);
+    } catch (error) {
+      console.error(error);
+      return error;
+    }
   }
 
   @Post('refresh_token')
