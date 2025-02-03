@@ -15,6 +15,7 @@ export class ProfileService {
         email: profile.email,
         first_name: profile.first_name,
         last_name: profile.last_name,
+        avatar: profile.avatar,
       };
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -27,8 +28,36 @@ export class ProfileService {
       return {
         first_name: profile.first_name,
         last_name: profile.last_name,
+        avatar: profile.avatar,
       };
     } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async updateProfileService(
+    user: IAuthUser,
+    body: { first_name: string; last_name: string; avatar: string },
+  ) {
+    console.log('🚀 ~ ProfileService ~ body:', body);
+    try {
+      const profile = await this.userModel.findOneAndUpdate(
+        { _id: user.sub },
+        {
+          first_name: body.first_name,
+          last_name: body.last_name,
+          avatar: body.avatar,
+        },
+        { new: true },
+      );
+      return {
+        email: profile.email,
+        first_name: profile.first_name,
+        last_name: profile.last_name,
+        avatar: profile.avatar,
+      };
+    } catch (error) {
+      console.log(error);
       throw new InternalServerErrorException(error);
     }
   }

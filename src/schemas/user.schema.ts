@@ -16,6 +16,9 @@ export class User {
 
   @Prop({ type: Boolean, default: false })
   verified: boolean;
+
+  @Prop({ type: String })
+  avatar?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
